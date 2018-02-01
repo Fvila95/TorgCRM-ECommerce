@@ -3,9 +3,13 @@ package ru.torgcrm.ecommerce.shop.models;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class SimplePage extends BaseModel {
+    @Getter @Setter
     private String title;
+
+    @Getter @Setter
     private String description;
 }

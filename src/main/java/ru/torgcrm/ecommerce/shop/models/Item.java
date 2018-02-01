@@ -1,9 +1,9 @@
 package ru.torgcrm.ecommerce.shop.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
 
-@Getter
-@Setter
+@Entity
+@Table(name = "item")
+@SequenceGenerator(name = "sq_name", sequenceName = "sq_item")
 public class Item extends SimplePage {
 }
