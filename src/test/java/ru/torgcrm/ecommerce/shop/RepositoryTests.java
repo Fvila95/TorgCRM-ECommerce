@@ -1,5 +1,6 @@
 package ru.torgcrm.ecommerce.shop;
 
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,9 @@ import ru.torgcrm.ecommerce.shop.models.Item;
 import ru.torgcrm.ecommerce.shop.repository.ItemRepository;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,20 +26,26 @@ public class RepositoryTests {
 
     @Test
     public void testItemRepository() {
-        String title = "Title";
-        String description = "Description";
+        Faker faker = new Faker(new Locale("ru"));
 
-        Item i = new Item();
-        i.setTitle(title);
-        i.setDescription(description);
-        
-        itemRepository.save(i);
-        List<Item> items = itemRepository.findAll();
+        List<Item> items = Stream.generate(Item::new)
+                .limit(10)
+                .collect(Collectors.toList());
         items.forEach(item -> {
-            Assert.assertNotNull(i.getCreateDate());
-            Assert.assertNotNull(i.getLastUpdateDate());
-            Assert.assertEquals(i.getTitle(), title);
-            Assert.assertEquals(i.getDescription(), description);
+            String title = faker.commerce().productName();
+            String description = faker.lorem().paragraph();
+
+            item.setTitle(title);
+            item.setDescription(description);
+            itemRepository.save(item);
+        });
+
+        List<Item> selectedItems = itemRepository.findAll();
+        selectedItems.forEach(item -> {
+            Assert.assertNotNull(item.getCreateDate());
+            Assert.assertNotNull(item.getLastUpdateDate());
+            Assert.assertNotNull(item.getTitle());
+            Assert.assertNotNull(item.getDescription());
         });
     }
 }

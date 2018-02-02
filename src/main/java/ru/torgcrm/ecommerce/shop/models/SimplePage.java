@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class SimplePage extends BaseModel {
+public abstract class SimplePage extends BaseModel {
     @Getter @Setter
     private String title;
 

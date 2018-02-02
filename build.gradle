@@ -34,9 +34,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jersey')
 	compile('org.springframework.kafka:spring-kafka')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('com.github.javafaker:javafaker:0.14')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	runtime('com.h2database:h2:1.4.196')
+
 	compileOnly('org.projectlombok:lombok')
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.apache.commons:commons-lang3:3.7')
+	testCompile('com.github.javafaker:javafaker:0.14')
 }

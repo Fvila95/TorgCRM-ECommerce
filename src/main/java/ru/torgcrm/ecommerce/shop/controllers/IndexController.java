@@ -17,10 +17,6 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        Item i = new Item();
-        i.setTitle("Title");
-        itemRepository.save(i);
-
         List<Item> items = itemRepository.findAll();
 
         model.addAttribute("items", items);
