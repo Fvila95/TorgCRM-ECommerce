@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.torgcrm.ecommerce.shop.models.Item;
 import ru.torgcrm.ecommerce.shop.repository.ItemRepository;
+import ru.torgcrm.ecommerce.shop.utils.DataSeeder;
 
 import java.util.List;
 import java.util.Locale;
@@ -28,17 +29,8 @@ public class RepositoryTests {
     public void testItemRepository() {
         Faker faker = new Faker(new Locale("ru"));
 
-        List<Item> items = Stream.generate(Item::new)
-                .limit(10)
-                .collect(Collectors.toList());
-        items.forEach(item -> {
-            String title = faker.commerce().productName();
-            String description = faker.lorem().paragraph();
-
-            item.setTitle(title);
-            item.setDescription(description);
-            itemRepository.save(item);
-        });
+        DataSeeder seeder = new DataSeeder();
+        seeder.seedItems(50, itemRepository);
 
         List<Item> selectedItems = itemRepository.findAll();
         selectedItems.forEach(item -> {
