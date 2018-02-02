@@ -1,16 +1,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/shop-homepage.css" rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+</head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><span th:text="${domain}"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="list-group my-4">
+                <a href="#" class="list-group-item">Category 1</a>
+                <a href="#" class="list-group-item">Category 2</a>
+                <a href="#" class="list-group-item">Category 3</a>
+            </div>
+        </div>
 
-<h1>
-    <span th:text="${domain}" />
-</h1>
-<!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
-<span th:each="item : ${items}">
-    <p th:text="${item.title}" />
-</span>
-
+        <div class="col-lg-9 my-4">
+            <div class="row">
+                <!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
+                <!--/*@thymesVar id="item" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
+                <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${items}">
+                    <div class="card">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#"><span th:text="${item.title}"></span></a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text" th:text="${item.description}"></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+    </div>
+</footer>
 </body>
-
 </html>
