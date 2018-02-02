@@ -1,9 +1,10 @@
 package ru.torgcrm.ecommerce.shop.repository;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ru.torgcrm.ecommerce.shop.models.Menu;
+import ru.torgcrm.ecommerce.shop.models.MenuItem;
 
 @Repository
-public interface CatalogRepository extends JpaRepository<Catalog, Long> {
+public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
 }

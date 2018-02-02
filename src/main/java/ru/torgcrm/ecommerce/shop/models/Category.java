@@ -5,7 +5,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 public class Category extends SimplePage {
     public static final String GEN_NAME  = "Gen_Category";
     public static final String SEQ_NAME  = "Seq_Category";

@@ -5,7 +5,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "menu")
+@Table(name = "menus")
 public class Menu extends BaseModel {
     public static final String GEN_NAME  = "Gen_Menu";
     public static final String SEQ_NAME  = "Seq_Menu";
