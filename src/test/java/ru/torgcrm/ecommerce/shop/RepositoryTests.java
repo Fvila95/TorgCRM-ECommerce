@@ -25,6 +25,9 @@ public class RepositoryTests {
     @Autowired
     ItemRepository itemRepository;
 
+    /**
+     * Testing item repository
+     */
     @Test
     public void testItemRepository() {
         Faker faker = new Faker(new Locale("ru"));
@@ -39,5 +42,10 @@ public class RepositoryTests {
             Assert.assertNotNull(item.getTitle());
             Assert.assertNotNull(item.getDescription());
         });
+    }
+
+    @Test
+    public void testCategoryRepository() {
+
     }
 }
