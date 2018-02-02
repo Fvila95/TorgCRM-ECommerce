@@ -35,6 +35,8 @@ dependencies {
 	compile('org.springframework.kafka:spring-kafka')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('com.github.javafaker:javafaker:0.14')
+	compile('com.google.guava:guava:23.6-jre')
+
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	runtime('com.h2database:h2:1.4.196')

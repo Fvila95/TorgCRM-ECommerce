@@ -3,6 +3,9 @@
 
 <body>
 
+<h1>
+    <span th:text="${domain}" />
+</h1>
 <!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
 <span th:each="item : ${items}">
     <p th:text="${item.title}" />
