@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.torgcrm.ecommerce.shop.models.*;
@@ -15,7 +16,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@EnableAutoConfiguration
 public class RepositoryTests {
 
     @Autowired
@@ -37,11 +37,12 @@ public class RepositoryTests {
     @Test
     public void testItemRepository() {
         DataSeeder seeder = new DataSeeder();
-        seeder.seedItems(50, itemRepository);
+        seeder.seedItems(10, itemRepository);
 
         List<Item> selectedItems = itemRepository.findAll();
         selectedItems.forEach(item -> {
             checkBasicProperties(item);
+            Assert.assertNotNull(item.getPrice());
         });
     }
 
@@ -51,9 +52,7 @@ public class RepositoryTests {
         seeder.seedCategory(10, categoryRepository);
 
         List<Category> categories = categoryRepository.findAll();
-        categories.forEach(category -> {
-            checkBasicProperties(category);
-        });
+        categories.forEach(category -> checkBasicProperties(category));
     }
 
     @Test
@@ -62,9 +61,7 @@ public class RepositoryTests {
         seeder.seedCategory(10, categoryRepository);
 
         List<Category> categories = categoryRepository.findAll();
-        categories.forEach(category -> {
-            checkBasicProperties(category);
-        });
+        categories.forEach(category -> checkBasicProperties(category));
     }
 
     @Test
@@ -73,9 +70,7 @@ public class RepositoryTests {
         seeder.seedMenuItem(10, categoryRepository);
 
         List<MenuItem> menuItems = menuItemRepository.findAll();
-        menuItems.forEach(menuItem -> {
-            checkBasicProperties(menuItem);
-        });
+        menuItems.forEach(menuItem -> checkBasicProperties(menuItem));
     }
 
     @Test
@@ -84,9 +79,7 @@ public class RepositoryTests {
         seeder.seedNews(10, newsRepository);
 
         List<News> news = newsRepository.findAll();
-        news.forEach(n -> {
-            checkBasicProperties(n);
-        });
+        news.forEach(n -> checkBasicProperties(n));
     }
 
     @Test
@@ -95,9 +88,7 @@ public class RepositoryTests {
         seeder.seedOrders(10, ordersRepository);
 
         List<Order> orders = ordersRepository.findAll();
-        orders.forEach(order -> {
-            checkBasicProperties(order);
-        });
+        orders.forEach(order -> checkBasicProperties(order));
     }
 
     /**

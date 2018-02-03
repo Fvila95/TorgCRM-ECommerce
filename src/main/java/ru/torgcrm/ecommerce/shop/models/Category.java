@@ -1,8 +1,10 @@
 package ru.torgcrm.ecommerce.shop.models;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,7 +17,15 @@ public class Category extends SimplePage {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
 
+    @Getter @Setter
+    @OneToMany(mappedBy = "category")
+    private List<Item> items;
+
     public Long getId() {
         return id;
+    }
+
+    public String getPermanentUrl() {
+        return "/category/" + getSlug();
     }
 }

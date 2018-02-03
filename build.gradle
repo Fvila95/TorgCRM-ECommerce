@@ -22,10 +22,14 @@ jar {
 	baseName = 'TorgCRM-ECommerce'
 }
 
-repositories {
-	mavenCentral()
+allprojects {
+	repositories {
+		mavenCentral()
+		maven {
+			url 'https://jitpack.io'
+		}
+	}
 }
-
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-activemq')
@@ -34,8 +38,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jersey')
 	compile('org.springframework.kafka:spring-kafka')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	compile('com.github.javafaker:javafaker:0.14')
-	compile('com.google.guava:guava:23.6-jre')
+	compile('com.google.guava:guava:23.0')
+	compile('com.github.DiUS:java-faker:javafaker-0.13')
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
@@ -45,5 +49,4 @@ dependencies {
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.apache.commons:commons-lang3:3.7')
-	testCompile('com.github.javafaker:javafaker:0.14')
 }

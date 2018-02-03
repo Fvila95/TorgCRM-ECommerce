@@ -1,5 +1,6 @@
 package ru.torgcrm.ecommerce.shop.models;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,13 @@ public class Item extends SimplePage {
     @SequenceGenerator(sequenceName = SEQ_NAME, name = GEN_NAME)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
+
+    @Getter @Setter
+    private Double price;
+
+    @Getter @Setter
+    @ManyToOne @JoinColumn(name = "category_id")
+    private Category category;
 
     public Long getId() {
         return id;

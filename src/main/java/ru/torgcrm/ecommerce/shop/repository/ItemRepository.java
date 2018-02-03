@@ -1,9 +1,16 @@
 package ru.torgcrm.ecommerce.shop.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.torgcrm.ecommerce.shop.models.Item;
 
+import java.util.List;
+
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends SimplePageRepository<Item, Long> {
+    /**
+     * Find all items by category id
+     * @param categoryId category id
+     * @return list of items
+     */
+    List<Item> findByCategoryId(Long categoryId);
 }
