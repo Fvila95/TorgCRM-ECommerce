@@ -40,6 +40,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('com.google.guava:guava:23.0')
 	compile('com.github.DiUS:java-faker:javafaker-0.13')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile('net.sf.ehcache:ehcache:2.9.0')
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
