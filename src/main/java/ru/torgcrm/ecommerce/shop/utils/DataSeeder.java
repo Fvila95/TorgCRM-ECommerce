@@ -24,7 +24,7 @@ public class DataSeeder {
         items.forEach((Item item) -> {
             Faker faker = new Faker(new Locale("ru"));
             seedSimplePageData(item);
-            item.setPrice(new Double(faker.commerce().price()));
+            item.setPrice(2.0);
             save(repository, item);
         });
     }
