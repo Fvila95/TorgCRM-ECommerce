@@ -17,18 +17,14 @@ import java.util.List;
 public class IndexController extends BasicShopController {
     @Autowired
     ItemRepository itemRepository;
-    @Autowired
-    CategoryRepository categoryRepository;
 
     @RequestMapping("/")
-    public String index(@RequestAttribute("domain") String domain,
-                        @RequestAttribute(BasicShopInterceptor._categoriesRequestAttribute) List categories,
-                        Model model) {
+    public String index(Model model) {
         List<Item> items = itemRepository.findAll();
 
         model.addAttribute("items", items);
-        model.addAttribute("categories", categories);
-        model.addAttribute("domain", domain);
+        model.addAttribute("categories", getRequestDataHolder().getCategories());
+        model.addAttribute("domain", getRequestDataHolder().getDomain());
         return "index";
     }
 }

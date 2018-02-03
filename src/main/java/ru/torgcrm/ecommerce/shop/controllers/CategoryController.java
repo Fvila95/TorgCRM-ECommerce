@@ -24,11 +24,10 @@ public class CategoryController extends BasicShopController {
 
     @RequestMapping("/category/{slug}")
     public String categoryIndex(@PathVariable(value = "slug") String slug,
-                                @RequestAttribute(name = BasicShopInterceptor._categoriesRequestAttribute) List categories,
                                 Model model) {
         Category currentCategory = (Category) categoryRepository.findBySlug(slug);
         List<Item> items = itemRepository.findByCategoryId(currentCategory.getId());
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories", getRequestDataHolder().getCategories());
         model.addAttribute("items", items);
         return "category/index";
     }
