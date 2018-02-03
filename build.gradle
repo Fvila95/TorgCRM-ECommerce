@@ -19,10 +19,6 @@ group = 'ru.torgcrm.ecommerce'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-jar {
-	baseName = 'TorgCRM-ECommerce'
-}
-
 war {
 	baseName = 'TorgCRM-ECommerce'
 }
@@ -51,6 +47,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
 	runtime('com.h2database:h2:1.4.196')
+	runtime('org.springframework.boot:spring-boot-starter-tomcat')
 
 	compileOnly('org.projectlombok:lombok')
 
