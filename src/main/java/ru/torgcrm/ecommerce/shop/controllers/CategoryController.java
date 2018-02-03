@@ -30,6 +30,6 @@ public class CategoryController extends BasicShopController {
         List<Item> items = itemRepository.findByCategoryId(currentCategory.getId());
         model.addAttribute("categories", categories);
         model.addAttribute("items", items);
-        return "category";
+        return "category/index";
     }
 }

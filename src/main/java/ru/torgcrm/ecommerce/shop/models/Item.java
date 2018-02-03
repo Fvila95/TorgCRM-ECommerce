@@ -26,4 +26,8 @@ public class Item extends SimplePage {
     public Long getId() {
         return id;
     }
+
+    public String getPermanentUrl() {
+        return "/item/" + getSlug();
+    }
 }

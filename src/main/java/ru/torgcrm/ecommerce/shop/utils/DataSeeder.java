@@ -22,7 +22,6 @@ public class DataSeeder {
                 .limit(quantity)
                 .collect(Collectors.toList());
         items.forEach((Item item) -> {
-            Faker faker = new Faker(new Locale("ru"));
             seedSimplePageData(item);
             item.setPrice(2.0);
             save(repository, item);

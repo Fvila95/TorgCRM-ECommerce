@@ -58,7 +58,7 @@
                         <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#"><span th:text="${item.title}"></span></a>
+                                <a th:href="${item.getPermanentUrl()}" th:text="${item.title}"></a>
                             </h4>
                             <span class="h5" th:text="${item.price}"></span>
                             <p class="card-text" th:text="${item.description}"></p>
