@@ -23,7 +23,7 @@ public class StartapUnit {
         if (generateTestData) {
             DataSeeder seeder = new DataSeeder();
             seeder.seedCategory(5, categoryRepository);
-            seeder.seedItems(50, itemRepository);
+            seeder.seedItemsWithCategories(50, categoryRepository.findAll(), itemRepository);
         }
     }
 }

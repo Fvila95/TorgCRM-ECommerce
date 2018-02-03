@@ -6,6 +6,7 @@ import ru.torgcrm.ecommerce.shop.models.*;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,6 +25,27 @@ public class DataSeeder {
         items.forEach((Item item) -> {
             seedSimplePageData(item);
             item.setPrice(2.0);
+            save(repository, item);
+        });
+    }
+
+    /**
+     * Populate items with categories
+     * @param quantity total quantity of generated items
+     * @param repository item repository
+     */
+    public void seedItemsWithCategories(int quantity, List<Category> categories,
+                                        JpaRepository repository) {
+        List<Item> items = Stream.generate(Item::new)
+                .limit(quantity)
+                .collect(Collectors.toList());
+        items.forEach((Item item) -> {
+            Random random = new Random();
+            int randomNumber = random.nextInt(categories.size());
+
+            seedSimplePageData(item);
+            item.setPrice(2.0);
+            item.setCategory(categories.get(randomNumber));
             save(repository, item);
         });
     }
