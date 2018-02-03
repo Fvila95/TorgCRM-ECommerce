@@ -26,7 +26,7 @@ public class CategoryController extends BasicShopController {
     public String categoryIndex(@PathVariable(value = "slug") String slug,
                                 @RequestAttribute(name = BasicShopInterceptor._categoriesRequestAttribute) List categories,
                                 Model model) {
-        Category currentCategory = categoryRepository.findBySlug(slug);
+        Category currentCategory = (Category) categoryRepository.findBySlug(slug);
         List<Item> items = itemRepository.findByCategoryId(currentCategory.getId());
         model.addAttribute("categories", categories);
         model.addAttribute("items", items);
