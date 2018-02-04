@@ -32,6 +32,7 @@ public class DataSeeder {
 
     /**
      * Populate items table
+     *
      * @param quantity total quantity of generated items
      */
     public void seedItems(int quantity) {
@@ -47,8 +48,8 @@ public class DataSeeder {
 
     /**
      * Populate items with categories
+     *
      * @param quantity total quantity of generated items
-     
      */
     public void seedItemsWithCategories(int quantity, List<Category> categories) {
         List<Item> items = Stream.generate(Item::new)
@@ -67,6 +68,7 @@ public class DataSeeder {
 
     /**
      * Populate category
+     *
      * @param quantity quantity of generated categories
      */
     public void seedCategory(int quantity) {
@@ -91,6 +93,7 @@ public class DataSeeder {
 
     /**
      * Populate menu item
+     *
      * @param quantity quantity of generated menu items
      */
     public void seedMenuItem(int quantity) {
@@ -110,6 +113,7 @@ public class DataSeeder {
 
     /**
      * Populate menu item
+     *
      * @param quantity quantity of generated menu items
      */
     public void seedNews(int quantity) {
@@ -124,6 +128,7 @@ public class DataSeeder {
 
     /**
      * Populate menu item
+     *
      * @param quantity quantity of generated menu items
      */
     public void seedOrders(int quantity) {
@@ -135,6 +140,7 @@ public class DataSeeder {
 
     /**
      * Populate menu item
+     *
      * @param quantity quantity of generated menu items
      */
     public void seedResponses(int quantity) {
@@ -146,6 +152,7 @@ public class DataSeeder {
 
     /**
      * Generate basic simple page fake data
+     *
      * @param page simple page entity
      * @return simple page entity
      */

@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "responses")
 public class Response extends BaseModel {
-    public static final String GEN_NAME  = "Gen_Response";
-    public static final String SEQ_NAME  = "Seq_Response";
+    public static final String GEN_NAME = "Gen_Response";
+    public static final String SEQ_NAME = "Seq_Response";
 
     @Id
     @Setter

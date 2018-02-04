@@ -4,8 +4,6 @@ package ru.torgcrm.ecommerce.shop.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -34,7 +32,8 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
         return new BasicShopInterceptor();
     }
 
-    @Bean @RequestScope
+    @Bean
+    @RequestScope
     public RequestDataHolder requestDataHolder() {
         return new RequestDataHolder();
     }

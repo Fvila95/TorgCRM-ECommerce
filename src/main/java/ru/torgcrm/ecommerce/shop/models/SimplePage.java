@@ -9,13 +9,17 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class SimplePage extends BaseModel {
-    @Getter @Setter
+    @Getter
+    @Setter
     private String title;
 
-    @Getter @Setter @Lob
+    @Getter
+    @Setter
+    @Lob
     private String description;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     @Column(name = "slug", unique = true)
     private String slug;
 }

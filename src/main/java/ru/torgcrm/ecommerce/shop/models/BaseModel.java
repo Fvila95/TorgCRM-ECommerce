@@ -3,7 +3,6 @@ package ru.torgcrm.ecommerce.shop.models;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
@@ -16,12 +15,14 @@ import java.util.Date;
  */
 @MappedSuperclass
 public abstract class BaseModel implements Serializable {
-    @Getter @Setter
+    @Getter
+    @Setter
     @CreationTimestamp
     @Column(name = "created_date", updatable = false)
     private Date createDate;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     @UpdateTimestamp
     @Column(name = "last_update_date")
     private Date lastUpdateDate;

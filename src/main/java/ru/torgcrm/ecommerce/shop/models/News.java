@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "news")
 public class News extends SimplePage {
-    public static final String GEN_NAME  = "Gen_News";
-    public static final String SEQ_NAME  = "Seq_News";
+    public static final String GEN_NAME = "Gen_News";
+    public static final String SEQ_NAME = "Seq_News";
 
     @Id
     @Setter

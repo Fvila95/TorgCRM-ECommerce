@@ -9,15 +9,17 @@ import java.util.List;
 @Entity
 @Table(name = "categories")
 public class Category extends SimplePage {
-    public static final String GEN_NAME  = "Gen_Category";
-    public static final String SEQ_NAME  = "Seq_Category";
+    public static final String GEN_NAME = "Gen_Category";
+    public static final String SEQ_NAME = "Seq_Category";
 
-    @Id @Setter
+    @Id
+    @Setter
     @SequenceGenerator(sequenceName = SEQ_NAME, name = GEN_NAME)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "category")
     private List<Item> items;
 

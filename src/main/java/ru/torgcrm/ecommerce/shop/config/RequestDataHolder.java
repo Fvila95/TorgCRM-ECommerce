@@ -9,10 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestDataHolder {
-    @Getter @Setter
+    @Getter
+    @Setter
     private String domain;
-    @Getter @Setter
+    @Getter
+    @Setter
     private List<Category> categories;
-    @Getter @Setter
+    @Getter
+    @Setter
     private Map<String, Menu> menu;
 }

@@ -9,18 +9,22 @@ import java.util.List;
 @Entity
 @Table(name = "menus")
 public class Menu extends BaseModel {
-    public static final String GEN_NAME  = "Gen_Menu";
-    public static final String SEQ_NAME  = "Seq_Menu";
+    public static final String GEN_NAME = "Gen_Menu";
+    public static final String SEQ_NAME = "Seq_Menu";
 
-    @Id @Setter
+    @Id
+    @Setter
     @SequenceGenerator(sequenceName = SEQ_NAME, name = GEN_NAME)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String code;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String title;
-    @Getter @Setter
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
     private List<MenuItem> menuItems;
 

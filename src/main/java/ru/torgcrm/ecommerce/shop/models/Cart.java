@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "cart")
 public class Cart extends BaseModel {
-    public static final String GEN_NAME  = "Gen_Cart";
-    public static final String SEQ_NAME  = "Seq_Cart";
+    public static final String GEN_NAME = "Gen_Cart";
+    public static final String SEQ_NAME = "Seq_Cart";
 
     @Id
     @Setter

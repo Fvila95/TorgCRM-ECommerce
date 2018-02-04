@@ -8,19 +8,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "items")
 public class Item extends SimplePage {
-    public static final String GEN_NAME  = "Gen_Item";
-    public static final String SEQ_NAME  = "Seq_Item";
+    public static final String GEN_NAME = "Gen_Item";
+    public static final String SEQ_NAME = "Seq_Item";
 
-    @Id @Setter
+    @Id
+    @Setter
     @SequenceGenerator(sequenceName = SEQ_NAME, name = GEN_NAME)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private Double price;
 
-    @Getter @Setter
-    @ManyToOne @JoinColumn(name = "category_id")
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Long getId() {
