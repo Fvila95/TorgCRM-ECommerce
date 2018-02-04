@@ -30,14 +30,15 @@ public class RepositoryTests {
     NewsRepository newsRepository;
     @Autowired
     OrdersRepository ordersRepository;
+    @Autowired
+    private DataSeeder seeder;
 
     /**
      * Testing item repository
      */
     @Test
     public void testItemRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedItems(10, itemRepository);
+        seeder.seedItems(10);
 
         List<Item> selectedItems = itemRepository.findAll();
         selectedItems.forEach(item -> {
@@ -48,8 +49,8 @@ public class RepositoryTests {
 
     @Test
     public void testCategoryRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedCategory(10, categoryRepository);
+
+        seeder.seedCategory(10);
 
         List<Category> categories = categoryRepository.findAll();
         categories.forEach(category -> checkBasicProperties(category));
@@ -57,17 +58,15 @@ public class RepositoryTests {
 
     @Test
     public void testMenuRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedCategory(10, categoryRepository);
+        seeder.seedMenu();
 
-        List<Category> categories = categoryRepository.findAll();
-        categories.forEach(category -> checkBasicProperties(category));
+        List<Menu> menus = menuRepository.findAll();
+        menus.forEach(menu -> checkBasicProperties(menu));
     }
 
     @Test
     public void testMenuItemRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedMenuItem(10, categoryRepository);
+        seeder.seedMenuItem(10);
 
         List<MenuItem> menuItems = menuItemRepository.findAll();
         menuItems.forEach(menuItem -> checkBasicProperties(menuItem));
@@ -75,8 +74,7 @@ public class RepositoryTests {
 
     @Test
     public void testNewsRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedNews(10, newsRepository);
+        seeder.seedNews(10);
 
         List<News> news = newsRepository.findAll();
         news.forEach(n -> checkBasicProperties(n));
@@ -84,8 +82,7 @@ public class RepositoryTests {
 
     @Test
     public void testOrdersRepository() {
-        DataSeeder seeder = new DataSeeder();
-        seeder.seedOrders(10, ordersRepository);
+        seeder.seedOrders(10);
 
         List<Order> orders = ordersRepository.findAll();
         orders.forEach(order -> checkBasicProperties(order));

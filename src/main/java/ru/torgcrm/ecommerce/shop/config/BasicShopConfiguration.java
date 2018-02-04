@@ -10,6 +10,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.torgcrm.ecommerce.shop.interceptors.BasicShopInterceptor;
+import ru.torgcrm.ecommerce.shop.utils.DataSeeder;
 
 @Configuration
 public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
@@ -36,5 +37,10 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
     @Bean @RequestScope
     public RequestDataHolder requestDataHolder() {
         return new RequestDataHolder();
+    }
+
+    @Bean
+    public DataSeeder dataSeeder() {
+        return new DataSeeder();
     }
 }

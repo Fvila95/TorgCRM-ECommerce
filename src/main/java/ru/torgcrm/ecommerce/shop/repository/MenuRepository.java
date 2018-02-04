@@ -6,4 +6,5 @@ import ru.torgcrm.ecommerce.shop.models.Menu;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
+    Menu findByCode(String code);
 }

@@ -43,6 +43,7 @@ dependencies {
 	compile('com.github.DiUS:java-faker:javafaker-0.13')
 	compile('org.springframework.boot:spring-boot-starter-cache')
 	compile('net.sf.ehcache:ehcache:2.9.0')
+	compile('org.mapstruct:mapstruct:1.2.0.Final')
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')

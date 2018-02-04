@@ -1,8 +1,10 @@
 package ru.torgcrm.ecommerce.shop.models;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "menus")
@@ -14,6 +16,13 @@ public class Menu extends BaseModel {
     @SequenceGenerator(sequenceName = SEQ_NAME, name = GEN_NAME)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GEN_NAME)
     private Long id;
+    @Getter @Setter
+    private String code;
+    @Getter @Setter
+    private String title;
+    @Getter @Setter
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
+    private List<MenuItem> menuItems;
 
     @Override
     public Long getId() {

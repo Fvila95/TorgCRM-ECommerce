@@ -17,13 +17,16 @@ public class StartapUnit {
     private ItemRepository itemRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private DataSeeder seeder;
 
     @PostConstruct
     public void init() {
         if (generateTestData) {
-            DataSeeder seeder = new DataSeeder();
-            seeder.seedCategory(5, categoryRepository);
-            seeder.seedItemsWithCategories(50, categoryRepository.findAll(), itemRepository);
+            seeder.seedMenu();
+            seeder.seedMenuItem(5);
+            seeder.seedCategory(5);
+            seeder.seedItemsWithCategories(50, categoryRepository.findAll());
         }
     }
 }

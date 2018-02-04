@@ -1,8 +1,10 @@
 package ru.torgcrm.ecommerce.shop.utils;
 
 import com.github.javafaker.Faker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.torgcrm.ecommerce.shop.models.*;
+import ru.torgcrm.ecommerce.shop.repository.*;
 
 import java.util.List;
 import java.util.Locale;
@@ -13,29 +15,42 @@ import java.util.stream.Stream;
 
 public class DataSeeder {
 
+    @Autowired
+    private MenuRepository menuRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private MenuItemRepository menuItemRepository;
+    @Autowired
+    private NewsRepository newsRepository;
+    @Autowired
+    private OrdersRepository ordersRepository;
+    @Autowired
+    private ResponseRepository responseRepository;
+
     /**
      * Populate items table
      * @param quantity total quantity of generated items
-     * @param repository item repository
      */
-    public void seedItems(int quantity, JpaRepository repository) {
+    public void seedItems(int quantity) {
         List<Item> items = Stream.generate(Item::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
         items.forEach((Item item) -> {
             seedSimplePageData(item);
             item.setPrice(2.0);
-            save(repository, item);
+            save(itemRepository, item);
         });
     }
 
     /**
      * Populate items with categories
      * @param quantity total quantity of generated items
-     * @param repository item repository
+     
      */
-    public void seedItemsWithCategories(int quantity, List<Category> categories,
-                                        JpaRepository repository) {
+    public void seedItemsWithCategories(int quantity, List<Category> categories) {
         List<Item> items = Stream.generate(Item::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
@@ -46,86 +61,87 @@ public class DataSeeder {
             seedSimplePageData(item);
             item.setPrice(2.0);
             item.setCategory(categories.get(randomNumber));
-            save(repository, item);
+            save(itemRepository, item);
         });
     }
 
     /**
      * Populate category
      * @param quantity quantity of generated categories
-     * @param repository jpa repository
      */
-    public void seedCategory(int quantity, JpaRepository repository) {
+    public void seedCategory(int quantity) {
         List<Category> categories = Stream.generate(Category::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
         categories.forEach(category -> {
             seedSimplePageData(category);
-            save(repository, category);
+            save(categoryRepository, category);
         });
     }
 
     /**
      * Populate menu
-     * @param quantity quantity of generated menus
-     * @param repository jpa repository
      */
-    public void seedMenu(int quantity, JpaRepository repository) {
-        List<Menu> menus = Stream.generate(Menu::new)
-                .limit(quantity)
-                .collect(Collectors.toList());
-        menus.forEach(menu -> save(repository, menu));
+    public void seedMenu() {
+        Menu menu = new Menu();
+        menu.setCode("main_menu");
+        menu.setTitle("Main menu");
+        menuRepository.save(menu);
     }
 
     /**
      * Populate menu item
      * @param quantity quantity of generated menu items
-     * @param repository jpa repository
      */
-    public void seedMenuItem(int quantity, JpaRepository repository) {
+    public void seedMenuItem(int quantity) {
         List<MenuItem> menus = Stream.generate(MenuItem::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
-        menus.forEach(menuItem -> save(repository, menuItem));
-    }
-
-    /**
-     * Populate menu item
-     * @param quantity quantity of generated menu items
-     * @param repository jpa repository
-     */
-    public void seedNews(int quantity, JpaRepository repository) {
-        List<News> news = Stream.generate(News::new)
-                .limit(quantity)
-                .collect(Collectors.toList());
-        news.forEach(n -> {
-            seedSimplePageData(n);
-            save(repository, n);
+        Menu menu = menuRepository.findByCode("main_menu");
+        menus.forEach(menuItem -> {
+            Faker faker = new Faker();
+            menuItem.setTitle(faker.name().title());
+            menuItem.setCode(faker.app().name());
+            menuItem.setLink("/page/sample");
+            menuItem.setMenu(menu);
+            save(menuItemRepository, menuItem);
         });
     }
 
     /**
      * Populate menu item
      * @param quantity quantity of generated menu items
-     * @param repository jpa repository
      */
-    public void seedOrders(int quantity, JpaRepository repository) {
-        List<Order> orders = Stream.generate(Order::new)
+    public void seedNews(int quantity) {
+        List<News> news = Stream.generate(News::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
-        orders.forEach(order -> save(repository, order));
+        news.forEach(n -> {
+            seedSimplePageData(n);
+            save(newsRepository, n);
+        });
     }
 
     /**
      * Populate menu item
      * @param quantity quantity of generated menu items
-     * @param repository jpa repository
      */
-    public void seedResponses(int quantity, JpaRepository repository) {
+    public void seedOrders(int quantity) {
+        List<Order> orders = Stream.generate(Order::new)
+                .limit(quantity)
+                .collect(Collectors.toList());
+        orders.forEach(order -> save(ordersRepository, order));
+    }
+
+    /**
+     * Populate menu item
+     * @param quantity quantity of generated menu items
+     */
+    public void seedResponses(int quantity) {
         List<Response> responses = Stream.generate(Response::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
-        responses.forEach(response -> save(repository, response));
+        responses.forEach(response -> save(responseRepository, response));
     }
 
     /**
