@@ -36,6 +36,9 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
         requestDataHolder.setMenu(menuMap);
         requestDataHolder.setDomain(domain);
         requestDataHolder.setCategories(categories);
+        if ("localhost".equals(requestDataHolder.getDomain())) {
+            requestDataHolder.setTemplate("default");
+        }
         return super.preHandle(request, response, handler);
     }
 }

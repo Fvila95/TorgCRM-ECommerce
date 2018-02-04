@@ -12,6 +12,6 @@ public class CartController extends BasicShopController {
     @RequestMapping
     public String index(Model model, HttpServletRequest request) {
         feelModel(model);
-        return "cart";
+        return getViewTemplate("cart/index");
     }
 }

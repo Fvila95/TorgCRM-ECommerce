@@ -1,11 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<head th:replace="__${template}__/fragments/layout :: head"></head>
 <body>
-<h1>
-    <span th:text="${domain}"></span>
-    <span th:text="${year}"></span>
-    <span th:text="${month}"></span>
-    <span th:text="${day}"></span>
-</h1>
+<nav th:replace="__${template}__/fragments/layout :: menu-header"></nav>
+<div class="container">
+    <div class="row">
+        <div th:replace="__${template}__/fragments/layout :: menu-categories"></div>
+        <div class="col-lg-9 my-4">
+            <div class="row">
+                news
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="py-5 bg-dark" th:replace="__${template}__/fragments/layout :: footer"></footer>
 </body>
 </html>

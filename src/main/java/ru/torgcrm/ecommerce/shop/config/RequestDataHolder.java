@@ -18,4 +18,7 @@ public class RequestDataHolder {
     @Getter
     @Setter
     private Map<String, Menu> menu;
+    @Getter
+    @Setter
+    private String template;
 }

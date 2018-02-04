@@ -20,6 +20,6 @@ public class IndexController extends BasicShopController {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
         feelModel(model);
-        return "index";
+        return getViewTemplate("index");
     }
 }

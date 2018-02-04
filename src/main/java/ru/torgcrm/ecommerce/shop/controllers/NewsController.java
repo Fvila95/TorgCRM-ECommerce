@@ -15,7 +15,7 @@ public class NewsController extends BasicShopController {
     @RequestMapping
     public String index(Model model, HttpServletRequest request) {
         feelModel(model);
-        return "news/index";
+        return getViewTemplate("news/index");
     }
 
     @RequestMapping("/{year:\\d{4}}/{month:\\d{2}}/{day:\\d{2}}/{slug}")
@@ -28,6 +28,6 @@ public class NewsController extends BasicShopController {
         model.addAttribute("month", month);
         model.addAttribute("day", day);
         feelModel(model);
-        return "news/details";
+        return getViewTemplate("news/details");
     }
 }

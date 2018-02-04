@@ -23,5 +23,15 @@ public abstract class BasicShopController {
         model.addAttribute("categories", getRequestDataHolder().getCategories());
         model.addAttribute("domain", getRequestDataHolder().getDomain());
         model.addAttribute("menu", getRequestDataHolder().getMenu());
+        model.addAttribute("template", getRequestDataHolder().getTemplate());
+    }
+
+    /**
+     * Get request template path
+     * @param path request view template
+     * @return string with request template location
+     */
+    protected String getViewTemplate(String path) {
+        return requestDataHolder.getTemplate() + "/" + path;
     }
 }

@@ -24,7 +24,7 @@ public class ItemController extends BasicShopController {
         Item item = (Item) itemRepository.findBySlug(slug);
         model.addAttribute("item", item);
         feelModel(model);
-        return "item/details";
+        return getViewTemplate("item/details");
     }
 
     @Override
