@@ -2,6 +2,7 @@ package ru.torgcrm.ecommerce.shop.config;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import ru.torgcrm.ecommerce.shop.models.Category;
 import ru.torgcrm.ecommerce.shop.models.Menu;
 

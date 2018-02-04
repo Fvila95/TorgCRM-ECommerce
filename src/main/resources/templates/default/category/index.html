@@ -1,32 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="__${template}__/fragments/layout :: head"></head>
+<head th:replace="__${template}__/fragments/category :: head"></head>
 <body>
-<nav th:replace="__${template}__/fragments/layout :: menu-header"></nav>
+<nav th:replace="__${template}__/fragments/category :: menu-header"></nav>
 <div class="container">
     <div class="row">
-        <div th:replace="__${template}__/fragments/layout :: menu-categories"></div>
-        <div class="col-lg-9 my-4">
-            <div class="row">
-                <!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
-                <!--/*@thymesVar id="item" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
-                <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${items}">
-                    <div class="card">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a th:href="${item.getPermanentUrl()}" th:text="${item.title}"></a>
-                            </h4>
-                            <span class="h5" th:text="${item.price}"></span>
-                            <p class="card-text" th:text="${item.description}"></p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="__${template}__/fragments/category :: menu-categories"></div>
+        <div class="col-lg-9 my-4" th:replace="__${template}__/fragments/category :: items"></div>
     </div>
 </div>
 <footer class="py-5 bg-dark" th:replace="__${template}__/fragments/layout :: footer"></footer>

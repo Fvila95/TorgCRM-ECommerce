@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.torgcrm.ecommerce.shop.interceptors.BasicShopInterceptor;
 import ru.torgcrm.ecommerce.shop.session.CartHolder;
@@ -22,11 +24,21 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(basicShopInterceptor)
                 .excludePathPatterns(
-                        "/js/**",
-                        "/css/**")
+                        "/static/**")
                 .addPathPatterns(
                         "/**");
         super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/templates/");
+    }
+
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        super.configureViewResolvers(registry);
     }
 
     @Bean

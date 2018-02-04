@@ -26,6 +26,7 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     MenuItemRepository menuItemRepository;
 
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String domain = request.getAttribute("domain").toString();

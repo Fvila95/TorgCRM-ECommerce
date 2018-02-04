@@ -42,6 +42,32 @@
                    th:href="${category.getPermanentUrl()}"></a>
             </div>
         </div>
+        <div class="col-lg-9 my-4" th:fragment="items">
+            <div class="row">
+                <!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
+                <!--/*@thymesVar id="item" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
+                <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${items}">
+                    <div class="card category-item-card">
+                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                        <div class="card-body">
+                            <div class="h5">
+                                <a class="card-title" th:href="${item.getPermanentUrl()}" th:text="${item.title}"></a>
+                            </div>
+                            <div>
+                                <span>Price: </span><span th:text="${item.price}"></span>
+                            </div>
+                            <div>
+                                <p class="card-text" th:text="${item.description}"></p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-small btn-primary">Click to buy</button>
+                            <button type="button" class="btn btn-small">Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <footer class="py-5 bg-dark" th:fragment="footer">

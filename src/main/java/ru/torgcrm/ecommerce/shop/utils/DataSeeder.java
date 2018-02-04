@@ -164,7 +164,7 @@ public class DataSeeder {
     private void seedSimplePageData(SimplePage page) {
         Faker faker = new Faker(new Locale("ru"));
         String title = faker.commerce().productName();
-        String description = faker.lorem().paragraph();
+        String description = faker.lorem().sentence(10);
         page.setTitle(title);
         page.setDescription(description);
         page.setSlug(faker.app().name());
