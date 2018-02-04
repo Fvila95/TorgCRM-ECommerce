@@ -17,6 +17,7 @@ public class IndexController extends BasicShopController {
 
     @RequestMapping("/")
     public String index(Model model, HttpServletRequest request) {
+        System.out.println(getCartHolder().getCartItem());
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
         feelModel(model);

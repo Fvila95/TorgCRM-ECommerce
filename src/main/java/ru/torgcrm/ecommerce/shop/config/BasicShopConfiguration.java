@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.torgcrm.ecommerce.shop.interceptors.BasicShopInterceptor;
+import ru.torgcrm.ecommerce.shop.session.CartHolder;
 import ru.torgcrm.ecommerce.shop.utils.DataSeeder;
 
 @Configuration
@@ -41,5 +43,10 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public DataSeeder dataSeeder() {
         return new DataSeeder();
+    }
+
+    @Bean @SessionScope
+    public CartHolder cartHolder() {
+        return new CartHolder();
     }
 }

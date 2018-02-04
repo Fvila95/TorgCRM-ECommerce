@@ -147,7 +147,12 @@ public class DataSeeder {
         List<Response> responses = Stream.generate(Response::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
-        responses.forEach(response -> save(responseRepository, response));
+        responses.forEach(response -> {
+            Faker faker = new Faker(new Locale("ru"));
+            response.setResponse(faker.lorem().sentence(10));
+            response.setCustomerName(faker.name().fullName());
+            save(responseRepository, response);
+        });
     }
 
     /**
