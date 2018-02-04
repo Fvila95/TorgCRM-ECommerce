@@ -21,10 +21,8 @@ public class IndexController extends BasicShopController {
     @RequestMapping("/")
     public String index(Model model) {
         List<Item> items = itemRepository.findAll();
-
         model.addAttribute("items", items);
-        model.addAttribute("categories", getRequestDataHolder().getCategories());
-        model.addAttribute("domain", getRequestDataHolder().getDomain());
+        feelModel(model);
         return "index";
     }
 }

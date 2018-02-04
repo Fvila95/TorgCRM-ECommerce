@@ -15,8 +15,7 @@ public class ExceptionController {
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ModelAndView pageNotFoundExceptionHandler(HttpServletRequest request,
-                                                     Exception e) {
+    public ModelAndView pageNotFoundExceptionHandler(HttpServletRequest request, Exception e) {
         return new ModelAndView("404");
     }
 }

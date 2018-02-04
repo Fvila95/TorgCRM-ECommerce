@@ -19,8 +19,7 @@ public class ItemController extends BasicShopController {
                               Model model) {
         Item item = (Item) itemRepository.findBySlug(slug);
         model.addAttribute("item", item);
-        model.addAttribute("categories", getRequestDataHolder().getCategories());
-        model.addAttribute("domain", getRequestDataHolder().getDomain());
+        feelModel(model);
         return "item/details";
     }
 }

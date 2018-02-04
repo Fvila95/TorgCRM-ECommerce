@@ -27,8 +27,8 @@ public class CategoryController extends BasicShopController {
                                 Model model) {
         Category currentCategory = (Category) categoryRepository.findBySlug(slug);
         List<Item> items = itemRepository.findByCategoryId(currentCategory.getId());
-        model.addAttribute("categories", getRequestDataHolder().getCategories());
         model.addAttribute("items", items);
+        feelModel(model);
         return "category/index";
     }
 }
