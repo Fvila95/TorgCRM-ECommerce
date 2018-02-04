@@ -100,7 +100,7 @@ public class DataSeeder {
         Menu menu = menuRepository.findByCode("main_menu");
         menus.forEach(menuItem -> {
             Faker faker = new Faker();
-            menuItem.setTitle(faker.name().title());
+            menuItem.setTitle(faker.app().name());
             menuItem.setCode(faker.app().name());
             menuItem.setLink("/page/sample");
             menuItem.setMenu(menu);

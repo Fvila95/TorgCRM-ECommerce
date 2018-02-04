@@ -32,7 +32,7 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
         List<Category> categories = categoryRepository.findAll();
         List<Menu> menu = menuRepository.findAll();
         Map<String, Menu> menuMap = new HashMap<>();
-        menu.forEach((Menu m) -> menuMap.put(m.getTitle(), m));
+        menu.forEach((Menu m) -> menuMap.put(m.getCode(), m));
         requestDataHolder.setMenu(menuMap);
         requestDataHolder.setDomain(domain);
         requestDataHolder.setCategories(categories);
