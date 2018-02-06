@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "menu_items")
@@ -30,6 +31,14 @@ public class MenuItem extends BaseModel {
     @ManyToOne
     @JoinColumn(name = "menu_id")
     private Menu menu;
+    @Getter
+    @Setter
+    @ManyToOne
+    private MenuItem parent;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "parent")
+    private List<MenuItem> children;
 
     @Override
     public Long getId() {

@@ -1,5 +1,6 @@
 package ru.torgcrm.ecommerce.shop.interceptors;
 
+import com.google.common.net.InternetDomainName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import ru.torgcrm.ecommerce.shop.config.RequestDataHolder;
@@ -11,6 +12,7 @@ import ru.torgcrm.ecommerce.shop.repository.MenuRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,14 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String domain = request.getAttribute("domain").toString();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        String urlRequest = httpServletRequest.getRequestURL().toString();
+
+        String domain = InternetDomainName
+                .from(new URL(urlRequest).getHost()).toString();
+
+        request.setAttribute("domain", domain);
+
         List<Category> categories = categoryRepository.findAll();
         List<Menu> menu = menuRepository.findAll();
         Map<String, Menu> menuMap = new HashMap<>();
@@ -40,6 +49,7 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
         if ("localhost".equals(requestDataHolder.getDomain())) {
             requestDataHolder.setTemplate("default");
         }
+        request.setAttribute("template", requestDataHolder.getTemplate());
         return super.preHandle(request, response, handler);
     }
 }

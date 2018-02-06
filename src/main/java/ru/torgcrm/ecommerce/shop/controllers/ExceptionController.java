@@ -16,11 +16,13 @@ public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView errorHandler(HttpServletRequest request, Exception e) {
-        return new ModelAndView(requestDataHolder.getTemplate()+ "/500");
+        String template = request.getAttribute("template").toString();
+        return new ModelAndView(template + "/500");
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView pageNotFoundExceptionHandler(HttpServletRequest request, Exception e) {
-        return new ModelAndView(requestDataHolder.getTemplate() + "/404");
+        String template = request.getAttribute("template").toString();
+        return new ModelAndView(template + "/404");
     }
 }

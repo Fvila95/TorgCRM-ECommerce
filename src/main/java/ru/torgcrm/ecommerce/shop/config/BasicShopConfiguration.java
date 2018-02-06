@@ -4,6 +4,7 @@ package ru.torgcrm.ecommerce.shop.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.torgcrm.ecommerce.shop.interceptors.BasicShopInterceptor;
-import ru.torgcrm.ecommerce.shop.session.CartHolder;
 import ru.torgcrm.ecommerce.shop.utils.DataSeeder;
 
 @Configuration
@@ -23,10 +23,7 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(basicShopInterceptor)
-                .excludePathPatterns(
-                        "/static/**")
-                .addPathPatterns(
-                        "/**");
+                .excludePathPatterns("/static/**").addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 
@@ -57,8 +54,9 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
         return new DataSeeder();
     }
 
-    @Bean @SessionScope
-    public CartHolder cartHolder() {
-        return new CartHolder();
+    @Bean
+    @SessionScope
+    public SessionDataHolder sessionDataHolder() {
+        return new SessionDataHolder();
     }
 }

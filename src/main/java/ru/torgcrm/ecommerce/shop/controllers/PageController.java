@@ -19,7 +19,6 @@ public class PageController extends BasicShopController {
 
     @RequestMapping("/{slug}")
     public String indexSlug(Model model, @PathVariable(name = "slug") String slug) {
-        getCartHolder().setCartItem(slug);
         feelModel(model);
         return getViewTemplate("page");
     }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import ru.torgcrm.ecommerce.shop.config.RequestDataHolder;
-import ru.torgcrm.ecommerce.shop.session.CartHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,9 +11,6 @@ public abstract class BasicShopController {
     @Autowired
     @Getter
     private RequestDataHolder requestDataHolder;
-    @Autowired
-    @Getter
-    private CartHolder cartHolder;
 
     public abstract String index(Model model, HttpServletRequest request);
 

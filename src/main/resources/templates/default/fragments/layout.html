@@ -21,10 +21,13 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarResponsive" th:fragment="header-menu">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" th:each="item : ${menu['main_menu'].menuItems}">
                     <a class="nav-link" th:text="${item.title}" th:href="${item.link}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Cart</a>
                 </li>
             </ul>
         </div>

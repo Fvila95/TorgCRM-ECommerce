@@ -21,13 +21,9 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" th:each="item : ${menu['main_menu'].menuItems}">
-                    <a class="nav-link" th:text="${item.title}" th:href="${item.link}"></a>
-                </li>
-            </ul>
-        </div>
+        <div class="collapse navbar-collapse"
+             id="navbarResponsive"
+             th:replace="__${template}__/fragments/layout :: header-menu"></div>
     </div>
 </nav>
 <div class="container">
@@ -43,6 +39,7 @@
             </div>
         </div>
         <div class="col-lg-9 my-4" th:fragment="items">
+            <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="row">
                 <!--/*@thymesVar id="items" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
                 <!--/*@thymesVar id="item" type="ru.torgcrm.ecommerce.shop.models.Item"*/-->
@@ -61,8 +58,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-small btn-primary">Click to buy</button>
-                            <button type="button" class="btn btn-small">Cart</button>
+                            <div class="btn btn-small btn-secondary addToCart">Add to cart</div>
+                            <div class="btn btn-small btn-primary clickToBuy">Click to buy</div>
                         </div>
                     </div>
                 </div>
