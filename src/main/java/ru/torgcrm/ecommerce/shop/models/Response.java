@@ -20,7 +20,8 @@ public class Response extends BaseModel {
     @Setter
     @Lob
     private String response;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String customerName;
 
     @Override

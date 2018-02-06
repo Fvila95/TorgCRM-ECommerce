@@ -8,10 +8,12 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class CartObjectDTO {
-    @Getter @Setter
+    @Getter
+    @Setter
     @JsonProperty("product_id")
     private Long productId;
-    @Getter @Setter
+    @Getter
+    @Setter
     @JsonProperty("quantity")
     private Integer quantity = 0;
 

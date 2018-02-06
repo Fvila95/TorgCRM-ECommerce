@@ -28,6 +28,7 @@ public abstract class BasicShopController {
 
     /**
      * Get request template path
+     *
      * @param path request view template
      * @return string with request template location
      */

@@ -23,7 +23,7 @@ public class NewsController extends BasicShopController {
                           @PathVariable(name = "year") String year,
                           @PathVariable(name = "month") String month,
                           @PathVariable(name = "day") String day
-                          ) {
+    ) {
         model.addAttribute("year", year);
         model.addAttribute("month", month);
         model.addAttribute("day", day);

@@ -28,7 +28,7 @@ public class RestCartController {
         if (cartObjectInSession != null) {
             Integer quantity = cartObjectInSession.getQuantity();
             sessionDataHolder.getCartObjects().get(indexOpt.getAsInt())
-                    .setQuantity(quantity <= 0 ? 1 : quantity+1);
+                    .setQuantity(quantity <= 0 ? 1 : quantity + 1);
         } else {
             sessionDataHolder.getCartObjects().add(cartObjectDTO);
         }
