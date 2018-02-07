@@ -1,11 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="__${template}__/fragments/category :: head"></head>
+<head th:replace="__${template}__/fragments/layout :: head"></head>
 <body>
-<nav th:replace="__${template}__/fragments/category :: menu-header"></nav>
+<nav th:replace="__${template}__/fragments/layout :: menu-header"></nav>
 <div class="container">
     <div class="row">
-        <div th:replace="__${template}__/fragments/category :: menu-categories"></div>
+        <div th:replace="__${template}__/fragments/layout :: menu-categories"></div>
         <div class="col-lg-9 my-4" th:replace="__${template}__/fragments/category :: items"></div>
     </div>
 </div>

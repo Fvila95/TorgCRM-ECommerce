@@ -1,43 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Shop Homepage - Start Bootstrap Template</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
-    <link th:href="@{/static/}+${template}+@{/css/main.css}" rel="stylesheet"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
-    <script th:src="@{/static/}+${template}+@{/js/main.js}" />
-</head>
+<head th:replace="__${template}__/fragments/layout :: head"></head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="menu-header">
-    <div class="container">
-        <a class="navbar-brand" href="/" th:text="${domain}"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse"
-             id="navbarResponsive"
-             th:replace="__${template}__/fragments/layout :: header-menu"></div>
-    </div>
-</nav>
+<nav th:replace="__${template}__/fragments/layout :: menu-header"></nav>
 <div class="container">
     <div class="row">
-        <div class="col-lg-3" th:fragment="menu-categories">
-            <div class="list-group my-4">
-                <!--/*@thymesVar id="categories" type="ru.torgcrm.ecommerce.shop.models.Category"*/-->
-                <!--/*@thymesVar id="category" type="ru.torgcrm.ecommerce.shop.models.Category"*/-->
-                <a href="#" class="list-group-item"
-                   th:each="category : ${categories}"
-                   th:text="${category.title}"
-                   th:href="${category.getPermanentUrl()}"></a>
-            </div>
-        </div>
+        <div th:replace="__${template}__/fragments/layout :: menu-categories"></div>
         <div class="col-lg-9 my-4" th:fragment="items">
             <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="row">
@@ -67,10 +36,6 @@
         </div>
     </div>
 </div>
-<footer class="py-5 bg-dark" th:fragment="footer">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-    </div>
-</footer>
+<footer class="py-5 bg-dark" th:replace="__${template}__/fragments/layout :: footer"></footer>
 </body>
 </html>

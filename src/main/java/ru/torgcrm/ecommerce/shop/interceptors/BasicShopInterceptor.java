@@ -34,8 +34,11 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String urlRequest = httpServletRequest.getRequestURL().toString();
 
-        String domain = InternetDomainName
-                .from(new URL(urlRequest).getHost()).toString();
+        String domain = request.getHeader("X-Forwarded-Host");
+        if (domain == null) {
+            domain = InternetDomainName
+                    .from(new URL(urlRequest).getHost()).toString();
+        }
 
         request.setAttribute("domain", domain);
 
@@ -47,6 +50,8 @@ public class BasicShopInterceptor extends HandlerInterceptorAdapter {
         requestDataHolder.setDomain(domain);
         requestDataHolder.setCategories(categories);
         if ("localhost".equals(requestDataHolder.getDomain())) {
+            requestDataHolder.setTemplate("default");
+        } else {
             requestDataHolder.setTemplate("default");
         }
         request.setAttribute("template", requestDataHolder.getTemplate());
