@@ -4,8 +4,17 @@
 <body>
 <nav th:replace="__${template}__/fragments/layout :: menu-header"></nav>
 <div class="container">
-    <div class="row">
-        cart content
+    <!--/*@thymesVar id="cartObjects" type="ru.torgcrm.ecommerce.shop.dto.CartObjectDTO"*/-->
+    <!--/*@thymesVar id="obj" type="ru.torgcrm.ecommerce.shop.dto.CartObjectDTO"*/-->
+    <div class="row" th:each="obj : ${cartObjects}">
+        <div class="col-1">
+            <img src="" width="50" height="50" />
+        </div>
+        <div class="col-6">description</div>
+        <div class="col-1"><span th:text="${obj.quantity}"></span></div>
+        <div class="col-1">price</div>
+        <div class="col-1">sum</div>
+        <div class="col-1">action</div>
     </div>
 </div>
 <footer class="py-5 bg-dark" th:replace="__${template}__/fragments/layout :: footer"></footer>

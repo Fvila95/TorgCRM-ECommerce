@@ -24,15 +24,19 @@ public class RestCartController {
         OptionalInt indexOpt = IntStream.range(0, sessionDataHolder.getCartObjects().size())
                 .filter(i -> cartObjectDTO.equals(sessionDataHolder.getCartObjects().get(i)))
                 .findFirst();
-        CartObjectDTO cartObjectInSession = sessionDataHolder.getCartObjects().get(indexOpt.getAsInt());
-        if (cartObjectInSession != null) {
-            Integer quantity = cartObjectInSession.getQuantity();
-            sessionDataHolder.getCartObjects().get(indexOpt.getAsInt())
-                    .setQuantity(quantity <= 0 ? 1 : quantity + 1);
-        } else {
+        if (!indexOpt.isPresent()) {
+            cartObjectDTO.setQuantity(cartObjectDTO.getQuantity() + 1);
             sessionDataHolder.getCartObjects().add(cartObjectDTO);
+        } else {
+            CartObjectDTO cartObjectInSession = sessionDataHolder.getCartObjects().get(indexOpt.getAsInt());
+            if (cartObjectInSession != null) {
+                Integer quantity = cartObjectInSession.getQuantity();
+                sessionDataHolder.getCartObjects().get(indexOpt.getAsInt())
+                        .setQuantity(quantity <= 0 ? 1 : quantity + 1);
+            } else {
+                sessionDataHolder.getCartObjects().add(cartObjectDTO);
+            }
         }
-
         return "OK";
     }
 
