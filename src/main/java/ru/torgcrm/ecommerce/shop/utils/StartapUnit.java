@@ -20,6 +20,7 @@ public class StartapUnit {
     @PostConstruct
     public void init() {
         if (generateTestData) {
+            seeder.seedProjects();
             seeder.seedResponses(10);
             seeder.seedMenu();
             seeder.seedMenuItem(5);
