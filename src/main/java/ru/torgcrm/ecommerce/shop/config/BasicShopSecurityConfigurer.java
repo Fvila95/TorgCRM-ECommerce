@@ -18,8 +18,7 @@ public class BasicShopSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf()
+        http.csrf().ignoringAntMatchers("/api/admin/**")
                 .and()
                 .httpBasic()
                 .disable();
