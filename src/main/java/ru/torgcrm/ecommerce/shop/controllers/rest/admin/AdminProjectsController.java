@@ -21,6 +21,12 @@ public class AdminProjectsController {
     }
 
     @CrossOrigin
+    @PutMapping(consumes = {"application/json"})
+    public @ResponseBody Project create(@RequestBody Project project) {
+        return this.projectRepository.save(project);
+    }
+
+    @CrossOrigin
     @PostMapping(consumes = {"application/json"})
     public @ResponseBody Project update(@RequestBody Project project) {
         return this.projectRepository.save(project);
@@ -33,8 +39,8 @@ public class AdminProjectsController {
     }
 
     @CrossOrigin
-    @DeleteMapping
-    public @ResponseBody String delete(@RequestBody(required = true) Long projectId) {
-        return "ok";
+    @DeleteMapping("{id}")
+    public @ResponseBody void delete(@PathVariable(name = "id") Long projectId) {
+        this.projectRepository.delete(projectId);
     }
 }

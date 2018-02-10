@@ -22,6 +22,9 @@ public class Project extends BaseModel {
     @Getter
     @Setter
     private String template;
+    @Getter
+    @Setter
+    private String name;
 
     @Override
     public Long getId() {
