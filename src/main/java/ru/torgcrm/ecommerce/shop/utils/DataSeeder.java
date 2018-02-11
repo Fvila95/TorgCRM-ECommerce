@@ -35,11 +35,13 @@ public class DataSeeder {
     public void seedProjects() {
         Faker faker = new Faker(new Locale("ru"));
         Project project = new Project();
+        project.setName("Project 1");
         project.setTemplate(faker.app().name());
         project.setDomain("torgcrm-shop2.com");
         save(itemRepository, project);
 
         Project project2 = new Project();
+        project2.setName("Project 2");
         project2.setTemplate(faker.app().name());
         project2.setDomain("torgcrm-shop1.com");
 

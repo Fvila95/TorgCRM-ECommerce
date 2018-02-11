@@ -1,5 +1,6 @@
 package ru.torgcrm.ecommerce.shop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ public class Menu extends BaseModel {
     private String title;
     @Getter
     @Setter
+    @JsonIgnore
     @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
     private List<MenuItem> menuItems;
 
