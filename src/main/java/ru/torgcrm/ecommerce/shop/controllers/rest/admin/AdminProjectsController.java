@@ -16,31 +16,36 @@ public class AdminProjectsController {
 
     @CrossOrigin
     @RequestMapping
-    public @ResponseBody List<Project> get() {
+    public @ResponseBody
+    List<Project> get() {
         return projectRepository.findAll();
     }
 
     @CrossOrigin
     @PutMapping(consumes = {"application/json"})
-    public @ResponseBody Project create(@RequestBody Project project) {
+    public @ResponseBody
+    Project create(@RequestBody Project project) {
         return this.projectRepository.save(project);
     }
 
     @CrossOrigin
     @PostMapping(consumes = {"application/json"})
-    public @ResponseBody Project update(@RequestBody Project project) {
+    public @ResponseBody
+    Project update(@RequestBody Project project) {
         return this.projectRepository.save(project);
     }
 
     @CrossOrigin
     @GetMapping("/details/{id}")
-    public @ResponseBody Project getById(@PathVariable(name = "id") Long projectId) {
+    public @ResponseBody
+    Project getById(@PathVariable(name = "id") Long projectId) {
         return projectRepository.findById(projectId);
     }
 
     @CrossOrigin
     @DeleteMapping("{id}")
-    public @ResponseBody void delete(@PathVariable(name = "id") Long projectId) {
+    public @ResponseBody
+    void delete(@PathVariable(name = "id") Long projectId) {
         this.projectRepository.delete(projectId);
     }
 }

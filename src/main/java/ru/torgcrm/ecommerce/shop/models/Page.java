@@ -18,7 +18,8 @@ public class Page extends SimplePage {
     private Long id;
 
     @Lob
-    @Getter @Setter
+    @Getter
+    @Setter
     private String content;
 
     @Override

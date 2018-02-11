@@ -58,4 +58,5 @@ public class BasicShopConfiguration extends WebMvcConfigurerAdapter {
     public SessionDataHolder sessionDataHolder() {
         return new SessionDataHolder();
     }
+
 }

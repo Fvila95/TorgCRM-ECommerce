@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "customers")
-public class Customer extends BaseModel {
-    public static final String GEN_NAME = "Gen_Customer";
-    public static final String SEQ_NAME = "Seq_Customer";
+@Table(name = "authority")
+public class Authority extends BaseModel {
+    public static final String GEN_NAME = "Gen_Authority";
+    public static final String SEQ_NAME = "Seq_Authority";
 
     @Id
     @Setter
@@ -20,8 +19,7 @@ public class Customer extends BaseModel {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    List<Order> orders;
+    private String name;
 
     @Override
     public Long getId() {

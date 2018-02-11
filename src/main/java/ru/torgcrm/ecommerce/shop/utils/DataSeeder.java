@@ -3,12 +3,11 @@ package ru.torgcrm.ecommerce.shop.utils;
 import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.torgcrm.ecommerce.shop.models.*;
 import ru.torgcrm.ecommerce.shop.repository.*;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,6 +30,12 @@ public class DataSeeder {
     private ResponseRepository responseRepository;
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     public void seedProjects() {
         Faker faker = new Faker(new Locale("ru"));
@@ -196,4 +201,30 @@ public class DataSeeder {
         }
     }
 
+    public void seedUser() {
+        User user = new User();
+        user.setLogin("admin");
+        user.setPassword(passwordEncoder.encode("admin"));
+
+        Set<Authority> authorities = new HashSet<>();
+        Authority authority = authorityRepository.findByName(AuthoritiesConstants.ADMIN);
+        authorities.add(authority);
+
+        user.setAuthorities(authorities);
+        userRepository.save(user);
+    }
+
+    public void seedAuthority() {
+        Authority authority = new Authority();
+        authority.setName(AuthoritiesConstants.USER);
+        authorityRepository.save(authority);
+
+        authority = new Authority();
+        authority.setName(AuthoritiesConstants.ADMIN);
+        authorityRepository.save(authority);
+
+        authority = new Authority();
+        authority.setName(AuthoritiesConstants.MANAGER);
+        authorityRepository.save(authority);
+    }
 }

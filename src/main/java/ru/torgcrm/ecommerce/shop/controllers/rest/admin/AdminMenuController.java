@@ -15,7 +15,8 @@ public class AdminMenuController {
 
     @CrossOrigin
     @GetMapping
-    private @ResponseBody List<Menu> getAll() {
+    private @ResponseBody
+    List<Menu> getAll() {
         return menuRepository.findAll();
     }
 

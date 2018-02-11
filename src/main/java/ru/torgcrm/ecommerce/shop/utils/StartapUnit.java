@@ -19,6 +19,8 @@ public class StartapUnit {
 
     @PostConstruct
     public void init() {
+        seeder.seedAuthority();
+        seeder.seedUser();
         if (generateTestData) {
             seeder.seedProjects();
             seeder.seedResponses(10);

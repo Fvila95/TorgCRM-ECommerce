@@ -6,12 +6,15 @@ import lombok.Setter;
 
 public class ProjectDTO {
     @JsonProperty("id")
-    @Getter @Setter
+    @Getter
+    @Setter
     private Long id;
     @JsonProperty("domain")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String domain;
     @JsonProperty("template")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String template;
 }
