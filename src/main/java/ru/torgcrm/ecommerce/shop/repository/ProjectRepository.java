@@ -6,5 +6,4 @@ import ru.torgcrm.ecommerce.shop.models.Project;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    public Project findById(Long id);
 }

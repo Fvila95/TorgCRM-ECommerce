@@ -9,20 +9,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/menu")
-public class AdminMenuController {
+public class AdminMenuController extends AdminRestController<Menu> {
     @Autowired
     private MenuRepository menuRepository;
 
     @CrossOrigin
     @GetMapping
-    private @ResponseBody
-    List<Menu> getAll() {
+    public @ResponseBody
+    List<Menu> list() {
         return menuRepository.findAll();
     }
 
     @CrossOrigin
+    @Override
+    @PutMapping
+    public @ResponseBody Menu create(@RequestBody Menu model) {
+        return menuRepository.save(model);
+    }
+
+    @CrossOrigin
     @PostMapping
-    private Menu update(Menu menu) {
+    public @ResponseBody Menu update(@RequestBody Menu menu) {
         return menuRepository.save(menu);
+    }
+
+    @CrossOrigin
+    @Override
+    @GetMapping("/details/{id}")
+    public @ResponseBody Menu getById(@PathVariable(name = "id") Long id) {
+        return menuRepository.findOne(id);
+    }
+
+    @CrossOrigin
+    @Override
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable(name = "id") Long id) {
+        menuRepository.delete(id);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/projects")
-public class AdminProjectsController {
+public class AdminProjectsController extends AdminRestController<Project> {
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -17,7 +17,7 @@ public class AdminProjectsController {
     @CrossOrigin
     @RequestMapping
     public @ResponseBody
-    List<Project> get() {
+    List<Project> list() {
         return projectRepository.findAll();
     }
 
@@ -39,7 +39,7 @@ public class AdminProjectsController {
     @GetMapping("/details/{id}")
     public @ResponseBody
     Project getById(@PathVariable(name = "id") Long projectId) {
-        return projectRepository.findById(projectId);
+        return projectRepository.findOne(projectId);
     }
 
     @CrossOrigin
