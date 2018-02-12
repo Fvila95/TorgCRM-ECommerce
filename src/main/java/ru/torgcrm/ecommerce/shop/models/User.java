@@ -25,7 +25,7 @@ public class User extends BaseModel {
 
     @Getter
     @Setter
-    private String login;
+    private String email;
     @Getter
     @Setter
     @JsonIgnore

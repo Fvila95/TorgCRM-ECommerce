@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.CorsFilter;
 import ru.torgcrm.ecommerce.shop.config.security.JwtConfigurer;
 import ru.torgcrm.ecommerce.shop.config.security.TokenProvider;
 import ru.torgcrm.ecommerce.shop.services.UserService;
@@ -29,12 +31,16 @@ public class BasicShopSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final TokenProvider tokenProvider;
 
+    private CorsFilter corsFilter;
+
     public BasicShopSecurityConfigurer(AuthenticationManagerBuilder authenticationManagerBuilder,
                                        UserService userService,
-                                       TokenProvider tokenProvider) {
+                                       TokenProvider tokenProvider,
+                                       CorsFilter corsFilter) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userService = userService;
         this.tokenProvider = tokenProvider;
+        this.corsFilter = corsFilter;
     }
 
     @PostConstruct
@@ -60,6 +66,7 @@ public class BasicShopSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.addFilter(corsFilter);
         http.csrf()
                 .ignoringAntMatchers("/api/admin/**")
                 .ignoringAntMatchers("/api/authenticate")

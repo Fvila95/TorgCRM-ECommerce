@@ -6,5 +6,5 @@ import ru.torgcrm.ecommerce.shop.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByLogin(String login);
+    User findByEmail(String login);
 }

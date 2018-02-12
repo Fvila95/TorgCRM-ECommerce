@@ -203,7 +203,7 @@ public class DataSeeder {
 
     public void seedUser() {
         User user = new User();
-        user.setLogin("admin");
+        user.setEmail("admin@admin.ru");
         user.setPassword(passwordEncoder.encode("admin"));
 
         Set<Authority> authorities = new HashSet<>();

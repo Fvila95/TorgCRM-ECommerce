@@ -32,7 +32,7 @@ public class LoginController {
     @PostMapping(value = "/authenticate", consumes = {"application/json"})
     public ResponseEntity<JwtTokenDTO> authorize(@Valid @RequestBody LoginDTO login) {
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(login.getLogin(), login.getPassword());
+                new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword());
 
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
