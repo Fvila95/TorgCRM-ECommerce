@@ -1,5 +1,6 @@
 package ru.torgcrm.ecommerce.shop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class Category extends SimplePage {
     @Getter
     @Setter
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Item> items;
 
     public Long getId() {
