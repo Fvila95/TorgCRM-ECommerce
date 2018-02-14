@@ -2,6 +2,7 @@ package ru.torgcrm.ecommerce.shop.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
