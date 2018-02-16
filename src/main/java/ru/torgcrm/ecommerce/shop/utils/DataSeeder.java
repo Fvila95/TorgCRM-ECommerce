@@ -59,12 +59,13 @@ public class DataSeeder {
      * @param quantity total quantity of generated items
      */
     public void seedItems(int quantity) {
+        Faker faker = new Faker();
         List<Item> items = Stream.generate(Item::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
         items.forEach((Item item) -> {
             seedSimplePageData(item);
-            item.setPrice(2.0);
+            item.setPrice(Double.valueOf(faker.commerce().price()));
             save(itemRepository, item);
         });
     }
@@ -75,6 +76,7 @@ public class DataSeeder {
      * @param quantity total quantity of generated items
      */
     public void seedItemsWithCategories(int quantity, List<Category> categories) {
+        Faker faker = new Faker();
         List<Item> items = Stream.generate(Item::new)
                 .limit(quantity)
                 .collect(Collectors.toList());
@@ -83,7 +85,7 @@ public class DataSeeder {
             int randomNumber = random.nextInt(categories.size());
 
             seedSimplePageData(item);
-            item.setPrice(2.0);
+            item.setPrice(Double.valueOf(faker.commerce().price()));
             item.setCategory(categories.get(randomNumber));
             save(itemRepository, item);
         });

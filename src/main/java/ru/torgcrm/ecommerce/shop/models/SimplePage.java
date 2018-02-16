@@ -20,6 +20,10 @@ public abstract class SimplePage extends BaseModel {
 
     @Getter
     @Setter
+    private String keywords;
+
+    @Getter
+    @Setter
     @Column(name = "slug", unique = true)
     private String slug;
 }
